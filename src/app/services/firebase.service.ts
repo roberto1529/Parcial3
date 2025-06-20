@@ -68,11 +68,13 @@ export const crearTaller = async (userId: string, taller: any) => {
   return refGlobal.id;
 };
 
+// Obtener todos los talleres
 export const getTodosLosTalleres = async () => {
   const ref = collection(db, 'talleres');
   const snapshot = await getDocs(ref);
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
+
 
 export const inscribirseATaller = async (tallerId: string, user: any) => {
   const ref = doc(db, `talleres/${tallerId}/inscritos/${user.uid}`);
@@ -85,8 +87,9 @@ export const inscribirseATaller = async (tallerId: string, user: any) => {
 
 // Obtener talleres del usuario
 export const getTalleres = async (userId: string) => {
-  const ref = collection(db, `users/${userId}/talleresOrganizados`);
-  const snapshot = await getDocs(ref);
+  const ref = collection(db, 'talleres');
+  const q = query(ref, where('userId', '==', userId)); // Filtra por el userId
+  const snapshot = await getDocs(q);
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 };
 

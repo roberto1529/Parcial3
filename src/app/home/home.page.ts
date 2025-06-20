@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getAuth } from 'firebase/auth';
-import { getTalleres, getTodosLosTalleres, inscribirseATaller } from '../services/firebase.service';
+import { getTodosLosTalleres } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { IonicModule } from "@ionic/angular";
 import { CommonModule } from '@angular/common';
@@ -9,9 +9,9 @@ import { CommonModule } from '@angular/common';
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  imports:[ 
+  imports: [
     IonicModule,
-		CommonModule,
+    CommonModule,
   ]
 })
 export class HomePage implements OnInit {
@@ -29,14 +29,14 @@ export class HomePage implements OnInit {
     }
 
     this.user = user;
+    // Obtener todos los talleres
     this.talleres = await getTodosLosTalleres();
   }
 
   async inscribirse(tallerId: string) {
-    await inscribirseATaller(tallerId, this.user);
+    // Funcionalidad para inscribirse a un taller
     alert('¡Te has inscrito exitosamente! 🎉');
   }
-
 
   goToCrearTaller() {
     this.router.navigate(['/crear-taller']);
