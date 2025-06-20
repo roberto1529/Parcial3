@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class LoginPage {
-  email: string = '';
-  password: string = '';
+  email: string = 'rm@r.co';
+  password: string = '12345678';
   isLoginMode: boolean = true;
   errorMessage: string = '';
 

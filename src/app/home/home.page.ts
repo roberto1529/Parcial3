@@ -31,8 +31,10 @@ export class HomePage implements OnInit {
     this.user = user;
     // Obtener todos los talleres
     this.talleres = await getTodosLosTalleres();
+    console.log(this.talleres);
+    
   }
-
+    
   async inscribirse(tallerId: string) {
     // Funcionalidad para inscribirse a un taller
     alert('¡Te has inscrito exitosamente! 🎉');
